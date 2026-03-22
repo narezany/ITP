@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D0D"
+    android:fillViewport="true"
+    tools:context=".TweaksActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"
+            android:background="#161616">
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Назад"
+                android:tint="#FFFFFF" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="Твики"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1F1F1F" />
+
+        <!-- Back to ITP -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+            <Button
+                android:id="@+id/btn_go_itp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="← Вернуться в ИТП"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_btn_dark" />
+        </LinearLayout>
+
+        <!-- ═══ SECTION: Content filters ═══ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="16dp" android:paddingBottom="8dp"
+            android:text="ФИЛЬТРЫ КОНТЕНТА"
+            android:textColor="#888888" android:textSize="11sp"
+            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+
+        <!-- Blur Profanity -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Блюр матов" android:textColor="#FFFFFF" android:textSize="16sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Размывает текст постов с матами"
+                    android:textColor="#888888" android:textSize="13sp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_blur_profanity"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- Traffic Saver -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Экономия трафика" android:textColor="#FFFFFF" android:textSize="16sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Скрывает изображения и видео"
+                    android:textColor="#888888" android:textSize="13sp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_traffic_saver"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- Image Download -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Скачка фото" android:textColor="#FFFFFF" android:textSize="16sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Кнопка скачивания в углу фото"
+                    android:textColor="#888888" android:textSize="13sp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_image_download"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- Emoji Clan Filter -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Скрыть эмодзи-кланы" android:textColor="#FFFFFF" android:textSize="16sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Введите эмодзи аватарки кланов через пробел"
+                android:textColor="#888888" android:textSize="13sp" />
+            <EditText
+                android:id="@+id/input_blocked_emojis"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_btn_dark"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#555555"
+                android:hint="🍅 😀 🐱"
+                android:textSize="18sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- ═══ SECTION: Appearance ═══ -->
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="20dp" android:paddingBottom="8dp"
+            android:text="ОФОРМЛЕНИЕ"
+            android:textColor="#888888" android:textSize="11sp"
+            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+
+        <!-- Material You -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Material You" android:textColor="#FFFFFF" android:textSize="16sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Адаптирует цвета под тему Android"
+                    android:textColor="#888888" android:textSize="13sp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_material_you"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- ═══ SECTION: Translator ═══ -->
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="20dp" android:paddingBottom="8dp"
+            android:text="ПЕРЕВОДЧИК"
+            android:textColor="#888888" android:textSize="11sp"
+            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+
+        <!-- Translator enable -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Переводчик" android:textColor="#FFFFFF" android:textSize="16sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Перевод постов и комментариев"
+                    android:textColor="#888888" android:textSize="13sp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_translator"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- Translator sub-settings (container that enables/disables) -->
+        <LinearLayout
+            android:id="@+id/translator_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Skip languages -->
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:background="#161616">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Не переводить с языков" android:textColor="#FFFFFF" android:textSize="15sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Коды через запятую (ru, uk, en...)"
+                    android:textColor="#888888" android:textSize="12sp" />
+                <EditText
+                    android:id="@+id/input_skip_langs"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_btn_dark"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#555555"
+                    android:hint="ru, uk"
+                    android:textSize="14sp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+            <!-- Target language -->
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:background="#161616">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Переводить на язык" android:textColor="#FFFFFF" android:textSize="15sp" />
+                <EditText
+                    android:id="@+id/input_target_lang"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_btn_dark"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#555555"
+                    android:hint="ru"
+                    android:textSize="14sp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+            <!-- Auto-translate -->
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="12dp" android:paddingBottom="12dp"
+                android:background="#161616">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Автоматически" android:textColor="#FFFFFF" android:textSize="15sp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Переводить сразу без нажатия"
+                        android:textColor="#888888" android:textSize="12sp" />
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_translator_auto"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- ═══ SECTION: Security ═══ -->
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="20dp" android:paddingBottom="8dp"
+            android:text="БЕЗОПАСНОСТЬ"
+            android:textColor="#888888" android:textSize="11sp"
+            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+
+        <!-- PIN lock -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:background="#161616">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="PIN-код" android:textColor="#FFFFFF" android:textSize="16sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Запрашивать PIN при каждом входе"
+                    android:textColor="#888888" android:textSize="13sp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_pin"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+
+        <!-- Spacer -->
+        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+        <!-- Subscribe -->
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="16dp" android:paddingBottom="24dp">
+            <Button
+                android:id="@+id/btn_subscribe_nrz"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Подписаться на nrz"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_btn_accent" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

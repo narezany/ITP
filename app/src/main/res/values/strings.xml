@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ИТП</string>
+    <string name="shortcut_tweaks_short">Твики</string>
+    <string name="shortcut_tweaks_long">Твики и настройки</string>
+    <string name="shortcut_accounts_short">Аккаунты</string>
+    <string name="shortcut_accounts_long">Смена аккаунта</string>
+</resources>
