@@ -5,4 +5,53 @@
     <string name="shortcut_tweaks_long">Твики и настройки</string>
     <string name="shortcut_accounts_short">Аккаунты</string>
     <string name="shortcut_accounts_long">Смена аккаунта</string>
+
+    <string name="tweaks_title">Твики</string>
+    <string name="tweaks_back_btn">← Вернуться в ИТП</string>
+
+    <string name="section_filters">ФИЛЬТРЫ КОНТЕНТА</string>
+    <string name="tweak_blur">Блюр матов</string>
+    <string name="tweak_blur_desc">Размывает текст постов с матами</string>
+
+    <string name="tweak_traffic">Экономия трафика</string>
+    <string name="tweak_traffic_desc">Скрывает изображения и видео</string>
+
+    <string name="tweak_download">Скачка фото</string>
+    <string name="tweak_download_desc">Кнопка скачивания в углу фото</string>
+
+    <string name="tweak_emoji">Скрыть эмодзи-кланы</string>
+    <string name="tweak_emoji_desc">Введите эмодзи аватарки кланов через пробел</string>
+
+    <string name="section_appearance">ОФОРМЛЕНИЕ</string>
+    <string name="tweak_my">Material You</string>
+    <string name="tweak_my_desc">Адаптирует цвета под тему Android 12+</string>
+
+    <string name="tweak_pc">ПК версия</string>
+    <string name="tweak_pc_desc">Сайт как на компьютере, горизонтальный экран</string>
+
+    <string name="section_translator">ПЕРЕВОДЧИК</string>
+    <string name="tweak_tr">Переводчик</string>
+    <string name="tweak_tr_desc">Перевод постов и комментариев</string>
+    <string name="tweak_tr_skip">Не переводить с языков</string>
+    <string name="tweak_tr_skip_desc">Коды через запятую (ru, uk, en…)</string>
+    <string name="tweak_tr_target">Переводить на язык</string>
+    <string name="tweak_tr_auto">Автоматически</string>
+    <string name="tweak_tr_auto_desc">Переводить сразу без нажатия</string>
+
+    <string name="section_analytics">АНАЛИТИКА</string>
+    <string name="tweak_analytics">Сбор данных</string>
+    <string name="tweak_analytics_desc">Анонимная статистика использования твиков</string>
+
+    <string name="section_security">БЕЗОПАСНОСТЬ</string>
+    <string name="tweak_pin">PIN-код</string>
+    <string name="tweak_pin_desc">Запрашивать PIN при каждом входе</string>
+
+    <string name="tweak_subscribe">Подписаться на nrz</string>
+
+    <string name="tweak_notifications">Уведомления</string>
+    <string name="tweak_notifications_desc">Фоновая проверка новых событий сайта</string>
+    
+    <string name="section_language">ЯЗЫК / LANGUAGE</string>
+    <string name="tweak_language">Язык приложения</string>
+    <string name="tweak_language_desc">Выберите предпочитаемый язык для меню</string>
 </resources>

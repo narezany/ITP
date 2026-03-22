@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ITP</string>
+    <string name="shortcut_tweaks_short">调整</string>
+    <string name="shortcut_tweaks_long">调整和设置</string>
+    <string name="shortcut_accounts_short">账户</string>
+    <string name="shortcut_accounts_long">切换账户</string>
+
+    <string name="tweaks_title">调整</string>
+    <string name="tweaks_back_btn">← 返回 ITP</string>
+
+    <string name="section_filters">内容过滤器</string>
+    <string name="tweak_blur">模糊脏话</string>
+    <string name="tweak_blur_desc">模糊包含脏话的帖子</string>
+
+    <string name="tweak_traffic">节省流量</string>
+    <string name="tweak_traffic_desc">隐藏图片和视频</string>
+
+    <string name="tweak_download">下载照片</string>
+    <string name="tweak_download_desc">照片角落的下载按钮</string>
+
+    <string name="tweak_emoji">隐藏表情部落</string>
+    <string name="tweak_emoji_desc">输入部落表情符号，用空格分隔</string>
+
+    <string name="section_appearance">外观</string>
+    <string name="tweak_my">Material You</string>
+    <string name="tweak_my_desc">适应 Android 12+ 系统颜色</string>
+
+    <string name="tweak_pc">电脑版</string>
+    <string name="tweak_pc_desc">桌面布局，强制横屏方向</string>
+
+    <string name="section_translator">翻译</string>
+    <string name="tweak_tr">翻译器</string>
+    <string name="tweak_tr_desc">翻译帖子和评论</string>
+    <string name="tweak_tr_skip">不翻译来自</string>
+    <string name="tweak_tr_skip_desc">逗号分隔的语言代码 (en, ru…)</string>
+    <string name="tweak_tr_target">翻译成</string>
+    <string name="tweak_tr_auto">自动</string>
+    <string name="tweak_tr_auto_desc">快速翻译而无需点击</string>
+
+    <string name="section_analytics">分析</string>
+    <string name="tweak_analytics">数据收集</string>
+    <string name="tweak_analytics_desc">匿名分析以了解调整的使用情况</string>
+
+    <string name="section_security">安全</string>
+    <string name="tweak_pin">PIN码</string>
+    <string name="tweak_pin_desc">每次启动时需要 PIN</string>
+
+    <string name="tweak_subscribe">订阅 nrz</string>
+
+    <string name="tweak_notifications">通知</string>
+    <string name="tweak_notifications_desc">后台检查新站点事件</string>
+    
+    <string name="section_language">语言 / LANGUAGE</string>
+    <string name="tweak_language">应用语言</string>
+    <string name="tweak_language_desc">选择您的首选菜单语言</string>
+</resources>

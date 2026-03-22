@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D0D0D"
+    android:background="#0F0F0F"
     android:fillViewport="true"
     tools:context=".TweaksActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
 
-        <!-- Toolbar -->
+        <!-- ══ Top Bar ══ -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="64dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingStart="8dp"
+            android:paddingStart="4dp"
             android:paddingEnd="16dp"
-            android:background="#161616">
+            android:background="#0F0F0F">
             <ImageButton
                 android:id="@+id/btn_back"
                 android:layout_width="48dp"
@@ -35,363 +37,567 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="4dp"
-                android:text="Твики"
+                android:text="@string/tweaks_title"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="22sp"
+                android:letterSpacing="-0.01"
                 android:fontFamily="sans-serif-medium" />
         </LinearLayout>
 
-        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1F1F1F" />
-
-        <!-- Back to ITP -->
+        <!-- ══ Back to ITP ══ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp">
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp">
             <Button
                 android:id="@+id/btn_go_itp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="← Вернуться в ИТП"
+                android:text="@string/tweaks_back_btn"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-medium"
                 android:background="@drawable/bg_btn_dark" />
         </LinearLayout>
 
-        <!-- ═══ SECTION: Content filters ═══ -->
+        <!-- ══════════════════════════════ -->
+        <!-- SECTION: ФИЛЬТРЫ КОНТЕНТА      -->
+        <!-- ══════════════════════════════ -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="16dp" android:paddingBottom="8dp"
-            android:text="ФИЛЬТРЫ КОНТЕНТА"
-            android:textColor="#888888" android:textSize="11sp"
-            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+            android:paddingStart="20dp" android:paddingEnd="16dp"
+            android:paddingTop="24dp" android:paddingBottom="10dp"
+            android:text="@string/section_filters"
+            android:textColor="#9AA0A6"
+            android:textSize="11sp"
+            android:letterSpacing="0.12"
+            android:fontFamily="sans-serif-medium" />
 
-        <!-- Blur Profanity -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Блюр матов" android:textColor="#FFFFFF" android:textSize="16sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Размывает текст постов с матами"
-                    android:textColor="#888888" android:textSize="13sp" />
-            </LinearLayout>
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_blur_profanity"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
 
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
-
-        <!-- Traffic Saver -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Экономия трафика" android:textColor="#FFFFFF" android:textSize="16sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Скрывает изображения и видео"
-                    android:textColor="#888888" android:textSize="13sp" />
-            </LinearLayout>
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_traffic_saver"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
-
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
-
-        <!-- Image Download -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Скачка фото" android:textColor="#FFFFFF" android:textSize="16sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Кнопка скачивания в углу фото"
-                    android:textColor="#888888" android:textSize="13sp" />
-            </LinearLayout>
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_image_download"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
-
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
-
-        <!-- Emoji Clan Filter -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Скрыть эмодзи-кланы" android:textColor="#FFFFFF" android:textSize="16sp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Введите эмодзи аватарки кланов через пробел"
-                android:textColor="#888888" android:textSize="13sp" />
-            <EditText
-                android:id="@+id/input_blocked_emojis"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_btn_dark"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#555555"
-                android:hint="🍅 😀 🐱"
-                android:textSize="18sp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:inputType="text"
-                android:imeOptions="actionDone"
-                android:maxLines="1" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+                <!-- Blur Profanity -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_blur" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_blur_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_blur_profanity"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
 
-        <!-- ═══ SECTION: Appearance ═══ -->
-        <TextView
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="20dp" android:paddingBottom="8dp"
-            android:text="ОФОРМЛЕНИЕ"
-            android:textColor="#888888" android:textSize="11sp"
-            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:background="#2A2A2A" />
 
-        <!-- Material You -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Material You" android:textColor="#FFFFFF" android:textSize="16sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Адаптирует цвета под тему Android"
-                    android:textColor="#888888" android:textSize="13sp" />
+                <!-- Traffic Saver -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_traffic" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_traffic_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_traffic_saver"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:background="#2A2A2A" />
+
+                <!-- Image Download -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_download" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_download_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_image_download"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:background="#2A2A2A" />
+
+                <!-- Emoji Clan Filter -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/tweak_emoji" android:textColor="#FFFFFF" android:textSize="16sp"
+                        android:fontFamily="sans-serif" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/tweak_emoji_desc"
+                        android:textColor="#9AA0A6" android:textSize="13sp" />
+                    <EditText
+                        android:id="@+id/input_blocked_emojis"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_btn_dark"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#555555"
+                        android:hint="🍅 😀 🐱"
+                        android:textSize="18sp"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:inputType="text"
+                        android:imeOptions="actionDone"
+                        android:maxLines="1" />
+                </LinearLayout>
+
             </LinearLayout>
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_material_you"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
-
-        <!-- ═══ SECTION: Translator ═══ -->
+        <!-- ══════════════════════════════ -->
+        <!-- SECTION: ОФОРМЛЕНИЕ           -->
+        <!-- ══════════════════════════════ -->
         <TextView
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="20dp" android:paddingBottom="8dp"
-            android:text="ПЕРЕВОДЧИК"
-            android:textColor="#888888" android:textSize="11sp"
-            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
-
-        <!-- Translator enable -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Переводчик" android:textColor="#FFFFFF" android:textSize="16sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Перевод постов и комментариев"
-                    android:textColor="#888888" android:textSize="13sp" />
-            </LinearLayout>
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_translator"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
-
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
-
-        <!-- Translator sub-settings (container that enables/disables) -->
-        <LinearLayout
-            android:id="@+id/translator_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:paddingStart="20dp" android:paddingEnd="16dp"
+            android:paddingTop="24dp" android:paddingBottom="10dp"
+            android:text="@string/section_appearance"
+            android:textColor="#9AA0A6"
+            android:textSize="11sp"
+            android:letterSpacing="0.12"
+            android:fontFamily="sans-serif-medium" />
 
-            <!-- Skip languages -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
             <LinearLayout
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="16dp" android:paddingEnd="16dp"
-                android:paddingTop="12dp" android:paddingBottom="12dp"
-                android:background="#161616">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Не переводить с языков" android:textColor="#FFFFFF" android:textSize="15sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Коды через запятую (ru, uk, en...)"
-                    android:textColor="#888888" android:textSize="12sp" />
-                <EditText
-                    android:id="@+id/input_skip_langs"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_btn_dark"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#555555"
-                    android:hint="ru, uk"
-                    android:textSize="14sp"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:inputType="text"
-                    android:imeOptions="actionDone"
-                    android:maxLines="1" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Material You -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_my" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_my_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_material_you"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:background="#2A2A2A" />
+
+                <!-- PC Version -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_pc" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_pc_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_pc_version"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <View android:layout_width="match_parent" android:layout_height="1dp"
-                android:layout_marginStart="16dp" android:background="#1F1F1F" />
+        <!-- ══════════════════════════════ -->
+        <!-- SECTION: ПЕРЕВОДЧИК           -->
+        <!-- ══════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp" android:paddingEnd="16dp"
+            android:paddingTop="24dp" android:paddingBottom="10dp"
+            android:text="@string/section_translator"
+            android:textColor="#9AA0A6"
+            android:textSize="11sp"
+            android:letterSpacing="0.12"
+            android:fontFamily="sans-serif-medium" />
 
-            <!-- Target language -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
             <LinearLayout
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="16dp" android:paddingEnd="16dp"
-                android:paddingTop="12dp" android:paddingBottom="12dp"
-                android:background="#161616">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Переводить на язык" android:textColor="#FFFFFF" android:textSize="15sp" />
-                <EditText
-                    android:id="@+id/input_target_lang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Translator toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_tr" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_tr_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_translator"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Translator sub-settings -->
+                <LinearLayout
+                    android:id="@+id/translator_settings"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_btn_dark"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#555555"
-                    android:hint="ru"
-                    android:textSize="14sp"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:inputType="text"
-                    android:imeOptions="actionDone"
-                    android:maxLines="1" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                        android:background="#2A2A2A" />
+
+                    <!-- Skip languages -->
+                    <LinearLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="14dp" android:paddingBottom="4dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_tr_skip" android:textColor="#FFFFFF" android:textSize="15sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_tr_skip_desc"
+                            android:textColor="#9AA0A6" android:textSize="12sp" />
+                        <EditText
+                            android:id="@+id/input_skip_langs"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_btn_dark"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#555555"
+                            android:hint="ru, uk"
+                            android:textSize="14sp"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"
+                            android:maxLines="1" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#2A2A2A" />
+
+                    <!-- Target language -->
+                    <LinearLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="14dp" android:paddingBottom="4dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_tr_target" android:textColor="#FFFFFF" android:textSize="15sp" />
+                        <EditText
+                            android:id="@+id/input_target_lang"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_btn_dark"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#555555"
+                            android:hint="ru"
+                            android:textSize="14sp"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"
+                            android:maxLines="1" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                        android:layout_marginTop="14dp"
+                        android:background="#2A2A2A" />
+
+                    <!-- Auto translate -->
+                    <LinearLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="12dp" android:paddingBottom="14dp"
+                        android:background="?attr/selectableItemBackground">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/tweak_tr_auto" android:textColor="#FFFFFF" android:textSize="15sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="@string/tweak_tr_auto_desc"
+                                android:textColor="#9AA0A6" android:textSize="12sp" />
+                        </LinearLayout>
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switch_translator_auto"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <View android:layout_width="match_parent" android:layout_height="1dp"
-                android:layout_marginStart="16dp" android:background="#1F1F1F" />
+        <!-- ══════════════════════════════ -->
+        <!-- SECTION: АНАЛИТИКА            -->
+        <!-- ══════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp" android:paddingEnd="16dp"
+            android:paddingTop="24dp" android:paddingBottom="10dp"
+            android:text="@string/section_analytics"
+            android:textColor="#9AA0A6"
+            android:textSize="11sp"
+            android:letterSpacing="0.12"
+            android:fontFamily="sans-serif-medium" />
 
-            <!-- Auto-translate -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <!-- Analytics toggle -->
             <LinearLayout
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:orientation="horizontal" android:gravity="center_vertical"
                 android:paddingStart="16dp" android:paddingEnd="16dp"
-                android:paddingTop="12dp" android:paddingBottom="12dp"
-                android:background="#161616">
+                android:paddingTop="14dp" android:paddingBottom="14dp"
+                android:background="?attr/selectableItemBackground">
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:orientation="vertical">
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Автоматически" android:textColor="#FFFFFF" android:textSize="15sp" />
+                        android:text="@string/tweak_analytics" android:textColor="#FFFFFF" android:textSize="16sp"
+                        android:fontFamily="sans-serif" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Переводить сразу без нажатия"
-                        android:textColor="#888888" android:textSize="12sp" />
+                        android:text="@string/tweak_analytics_desc"
+                        android:textColor="#9AA0A6" android:textSize="13sp" />
                 </LinearLayout>
                 <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_translator_auto"
+                    android:id="@+id/switch_analytics"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp" />
+                    android:layout_marginStart="16dp" />
             </LinearLayout>
-        </LinearLayout>
 
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+        </androidx.cardview.widget.CardView>
 
-        <!-- ═══ SECTION: Security ═══ -->
+        <!-- ══════════════════════════════ -->
+        <!-- SECTION: БЕЗОПАСНОСТЬ         -->
+        <!-- ══════════════════════════════ -->
         <TextView
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="20dp" android:paddingBottom="8dp"
-            android:text="БЕЗОПАСНОСТЬ"
-            android:textColor="#888888" android:textSize="11sp"
-            android:letterSpacing="0.1" android:fontFamily="sans-serif-medium" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp" android:paddingEnd="16dp"
+            android:paddingTop="24dp" android:paddingBottom="10dp"
+            android:text="@string/section_security"
+            android:textColor="#9AA0A6"
+            android:textSize="11sp"
+            android:letterSpacing="0.12"
+            android:fontFamily="sans-serif-medium" />
 
-        <!-- PIN lock -->
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:gravity="center_vertical"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="12dp" android:paddingBottom="12dp"
-            android:background="#161616">
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="PIN-код" android:textColor="#FFFFFF" android:textSize="16sp" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Запрашивать PIN при каждом входе"
-                    android:textColor="#888888" android:textSize="13sp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <!-- PIN lock -->
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="14dp" android:paddingBottom="14dp"
+                android:background="?attr/selectableItemBackground">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/tweak_pin" android:textColor="#FFFFFF" android:textSize="16sp"
+                        android:fontFamily="sans-serif" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/tweak_pin_desc"
+                        android:textColor="#9AA0A6" android:textSize="13sp" />
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_pin"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp" />
             </LinearLayout>
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_pin"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
 
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:layout_marginStart="16dp" android:background="#1F1F1F" />
+        </androidx.cardview.widget.CardView>
 
-        <!-- Spacer -->
-        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+        <!-- ══════════════════════════════ -->
+        <!-- SECTION: ЯЗЫК                  -->
+        <!-- ══════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp" android:paddingEnd="16dp"
+            android:paddingTop="24dp" android:paddingBottom="10dp"
+            android:text="@string/section_language"
+            android:textColor="#9AA0A6"
+            android:textSize="11sp"
+            android:letterSpacing="0.12"
+            android:fontFamily="sans-serif-medium" />
 
-        <!-- Subscribe -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:paddingTop="14dp" android:paddingBottom="14dp"
+                android:background="?attr/selectableItemBackground">
+                
+                <LinearLayout
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/tweak_language" android:textColor="#FFFFFF" android:textSize="16sp"
+                        android:fontFamily="sans-serif-medium" />
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/tweak_language_desc" android:textColor="#AAAAAA" android:textSize="14sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ══ Subscribe Button ══ -->
         <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingTop="16dp" android:paddingBottom="24dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="28dp">
             <Button
                 android:id="@+id/btn_subscribe_nrz"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="Подписаться на nrz"
+                android:layout_height="52dp"
+                android:text="@string/tweak_subscribe"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textAllCaps="false"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ITP</string>
+    <string name="shortcut_tweaks_short">Ajustes</string>
+    <string name="shortcut_tweaks_long">Ajustes y Configuración</string>
+    <string name="shortcut_accounts_short">Cuentas</string>
+    <string name="shortcut_accounts_long">Cambiar de cuenta</string>
+
+    <string name="tweaks_title">Ajustes</string>
+    <string name="tweaks_back_btn">← Volver a ITP</string>
+
+    <string name="section_filters">FILTROS DE CONTENIDO</string>
+    <string name="tweak_blur">Desenfocar groserías</string>
+    <string name="tweak_blur_desc">Desenfoca publicaciones con groserías</string>
+
+    <string name="tweak_traffic">Ahorro de Datos</string>
+    <string name="tweak_traffic_desc">Oculta imágenes y videos</string>
+
+    <string name="tweak_download">Descargar Fotos</string>
+    <string name="tweak_download_desc">Botón de descarga en la esquina de las fotos</string>
+
+    <string name="tweak_emoji">Ocultar Clanes de Emojis</string>
+    <string name="tweak_emoji_desc">Introduce avatares de emojis de clanes separados por un espacio</string>
+
+    <string name="section_appearance">APARIENCIA</string>
+    <string name="tweak_my">Material You</string>
+    <string name="tweak_my_desc">Adapta los colores al tema de Android 12+</string>
+
+    <string name="tweak_pc">Versión para PC</string>
+    <string name="tweak_pc_desc">Diseño de escritorio, orientación horizontal forzada</string>
+
+    <string name="section_translator">TRADUCTOR</string>
+    <string name="tweak_tr">Traductor</string>
+    <string name="tweak_tr_desc">Traduce publicaciones y comentarios</string>
+    <string name="tweak_tr_skip">No traducir desde</string>
+    <string name="tweak_tr_skip_desc">Códigos de idioma separados por comas (es, en, ru…)</string>
+    <string name="tweak_tr_target">Traducir a</string>
+    <string name="tweak_tr_auto">Automáticamente</string>
+    <string name="tweak_tr_auto_desc">Traduce instantáneamente sin necesidad de tocar</string>
+
+    <string name="section_analytics">ANÁLISIS</string>
+    <string name="tweak_analytics">Recolección de Datos</string>
+    <string name="tweak_analytics_desc">Estadísticas anónimas del uso de ajustes</string>
+
+    <string name="section_security">SEGURIDAD</string>
+    <string name="tweak_pin">Código PIN</string>
+    <string name="tweak_pin_desc">Requiere PIN en cada inicio</string>
+
+    <string name="tweak_subscribe">Suscribirse a nrz</string>
+
+    <string name="tweak_notifications">Notificaciones</string>
+    <string name="tweak_notifications_desc">Comprobación en segundo plano de nuevos eventos del sitio</string>
+    
+    <string name="section_language">IDIOMA / LANGUAGE</string>
+    <string name="tweak_language">Idioma de la App</string>
+    <string name="tweak_language_desc">Selecciona el idioma preferido para el menú</string>
+</resources>

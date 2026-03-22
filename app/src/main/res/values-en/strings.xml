@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ITP</string>
+    <string name="shortcut_tweaks_short">Tweaks</string>
+    <string name="shortcut_tweaks_long">Tweaks and Settings</string>
+    <string name="shortcut_accounts_short">Accounts</string>
+    <string name="shortcut_accounts_long">Switch Account</string>
+
+    <string name="tweaks_title">Tweaks</string>
+    <string name="tweaks_back_btn">← Back to ITP</string>
+
+    <string name="section_filters">CONTENT FILTERS</string>
+    <string name="tweak_blur">Blur profanity</string>
+    <string name="tweak_blur_desc">Blurs posts containing profanity</string>
+
+    <string name="tweak_traffic">Traffic Saver</string>
+    <string name="tweak_traffic_desc">Hides images and videos</string>
+
+    <string name="tweak_download">Download Photos</string>
+    <string name="tweak_download_desc">Download button in the corner of photos</string>
+
+    <string name="tweak_emoji">Hide Emoji Clans</string>
+    <string name="tweak_emoji_desc">Enter clan emoji avatars separated by space</string>
+
+    <string name="section_appearance">APPEARANCE</string>
+    <string name="tweak_my">Material You</string>
+    <string name="tweak_my_desc">Adapts colors to Android 12+ system theme</string>
+
+    <string name="tweak_pc">PC Version</string>
+    <string name="tweak_pc_desc">Desktop layout, forced landscape orientation</string>
+
+    <string name="section_translator">TRANSLATOR</string>
+    <string name="tweak_tr">Translator</string>
+    <string name="tweak_tr_desc">Translate posts and comments</string>
+    <string name="tweak_tr_skip">Do not translate from</string>
+    <string name="tweak_tr_skip_desc">Comma-separated language codes (en, ru…)</string>
+    <string name="tweak_tr_target">Translate to</string>
+    <string name="tweak_tr_auto">Automatically</string>
+    <string name="tweak_tr_auto_desc">Translate instantly without tapping</string>
+
+    <string name="section_analytics">ANALYTICS</string>
+    <string name="tweak_analytics">Data Collection</string>
+    <string name="tweak_analytics_desc">Anonymous analytics for tweaks usage</string>
+
+    <string name="section_security">SECURITY</string>
+    <string name="tweak_pin">PIN Code</string>
+    <string name="tweak_pin_desc">Require PIN on every launch</string>
+
+    <string name="tweak_subscribe">Subscribe to nrz</string>
+
+    <string name="tweak_notifications">Notifications</string>
+    <string name="tweak_notifications_desc">Background check for new site events</string>
+    
+    <string name="section_language">LANGUAGE / ЯЗЫК</string>
+    <string name="tweak_language">App Language</string>
+    <string name="tweak_language_desc">Select preferred language for menu</string>
+</resources>

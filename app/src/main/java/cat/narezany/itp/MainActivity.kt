@@ -1,13 +1,25 @@
 package cat.narezany.itp
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
+import android.os.SystemClock
+import android.view.KeyEvent
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.JavascriptInterface
@@ -16,10 +28,12 @@ import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -30,12 +44,92 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
 import org.json.JSONArray
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private var fileUploadCallback: ValueCallback<Array<Uri>>? = null
     private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
+
+    // ──────── TV cursor ────────
+    private lateinit var cursorView: CursorView
+    private var cursorX = 0f
+    private var cursorY = 0f
+    private val cursorHandler = Handler(Looper.getMainLooper())
+    private var cursorVisible = false
+    private var okLongPressPending = false
+
+    // Smooth movement state
+    private var isUpPressed = false
+    private var isDownPressed = false
+    private var isLeftPressed = false
+    private var isRightPressed = false
+    private val cursorSpeed = 24f
+    private val scrollSpeed = 30
+
+    private val cursorUpdateRunnable: Runnable = object : Runnable {
+        override fun run() {
+            if (!cursorVisible) return
+            var moved = false
+            var scrolled = false
+            
+            if (isUpPressed) {
+                if (cursorY > 0f) { cursorY = (cursorY - cursorSpeed).coerceAtLeast(0f); moved = true }
+                else { webView.scrollBy(0, -scrollSpeed); scrolled = true }
+            }
+            if (isDownPressed) {
+                if (cursorY < cursorView.height.toFloat()) { cursorY = (cursorY + cursorSpeed).coerceAtMost(cursorView.height.toFloat()); moved = true }
+                else { webView.scrollBy(0, scrollSpeed); scrolled = true }
+            }
+            if (isLeftPressed) {
+                if (cursorX > 0f) { cursorX = (cursorX - cursorSpeed).coerceAtLeast(0f); moved = true }
+                else { webView.scrollBy(-scrollSpeed, 0); scrolled = true }
+            }
+            if (isRightPressed) {
+                if (cursorX < cursorView.width.toFloat()) { cursorX = (cursorX + cursorSpeed).coerceAtMost(cursorView.width.toFloat()); moved = true }
+                else { webView.scrollBy(scrollSpeed, 0); scrolled = true }
+            }
+            
+            if (moved || scrolled) {
+                if (moved) cursorView.invalidate()
+                cursorHandler.removeCallbacks(hideCursorRunnable)
+                cursorHandler.postDelayed(hideCursorRunnable, 4000)
+            }
+            if (isUpPressed || isDownPressed || isLeftPressed || isRightPressed) {
+                cursorHandler.postDelayed(this, 16)
+            }
+        }
+    }
+
+    private val hideCursorRunnable = Runnable {
+        cursorVisible = false
+        cursorView.invalidate()
+    }
+    private val okLongPressRunnable = Runnable {
+        startActivity(Intent(this, TweaksActivity::class.java))
+    }
+
+    inner class CursorView(context: android.content.Context) : View(context) {
+        private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.WHITE
+            style = Paint.Style.FILL
+            alpha = 220
+        }
+        private val shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.BLACK
+            style = Paint.Style.FILL
+            alpha = 80
+        }
+        override fun onDraw(canvas: Canvas) {
+            if (!cursorVisible) return
+            canvas.drawCircle(cursorX + 2f, cursorY + 2f, 9f, shadowPaint)
+            canvas.drawCircle(cursorX, cursorY, 8f, paint)
+        }
+    }
 
     companion object {
         const val EXTRA_URL = "extra_url"
@@ -399,6 +493,12 @@ document.head.appendChild(s); })();
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("tweaks_prefs", MODE_PRIVATE)
+
+        // Применяем состояние аналитики при каждом запуске
+        Firebase.analytics.setAnalyticsCollectionEnabled(
+            prefs.getBoolean("analytics_enabled", true)
+        )
+
         val pin = prefs.getString("pin_code", null)
         if (pin != null && !pinUnlocked) {
             startActivity(Intent(this, PinActivity::class.java))
@@ -409,6 +509,24 @@ document.head.appendChild(s); })();
         val ic = WindowCompat.getInsetsController(window, window.decorView)
         ic.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         ic.hide(WindowInsetsCompat.Type.systemBars())
+
+        val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                ContextCompat.startForegroundService(this, Intent(this, NotificationService::class.java))
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.startForegroundService(this, Intent(this, NotificationService::class.java))
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        } else {
+            ContextCompat.startForegroundService(this, Intent(this, NotificationService::class.java))
+        }
 
         filePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val uris = mutableListOf<Uri>()
@@ -448,11 +566,23 @@ document.head.appendChild(s); })();
             }
         }
 
+        // TV Cursor overlay
+        cursorView = CursorView(this)
+        cursorView.layoutParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
+        )
+        cursorView.isClickable = false
+        cursorView.isFocusable = false
+
         swipeRefresh = SwipeRefreshLayout(this)
         swipeRefresh.addView(webView)
         swipeRefresh.setOnRefreshListener { webView.reload() }
         webView.setOnScrollChangeListener { _, _, scrollY, _, _ -> swipeRefresh.isEnabled = scrollY == 0 }
-        setContentView(swipeRefresh)
+
+        val rootFrame = FrameLayout(this)
+        rootFrame.addView(swipeRefresh)
+        rootFrame.addView(cursorView)
+        setContentView(rootFrame)
 
         val extraUrl = intent.getStringExtra(EXTRA_URL)
         if (savedInstanceState == null) {
@@ -477,24 +607,118 @@ document.head.appendChild(s); })();
         if (webView.canGoBack()) webView.goBack() else super.onBackPressed()
     }
 
+    // ──────── TV D-pad + cursor ────────
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        when (event.keyCode) {
+            KeyEvent.KEYCODE_DPAD_UP, KeyEvent.KEYCODE_DPAD_DOWN,
+            KeyEvent.KEYCODE_DPAD_LEFT, KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                val isDown = event.action == KeyEvent.ACTION_DOWN
+
+                // Show cursor if hidden
+                if (isDown && !cursorVisible) {
+                    cursorX = cursorView.width / 2f
+                    cursorY = cursorView.height / 2f
+                    cursorVisible = true
+                    cursorView.invalidate()
+                    cursorHandler.removeCallbacks(hideCursorRunnable)
+                    cursorHandler.postDelayed(hideCursorRunnable, 4000)
+                }
+
+                // Update axis state
+                when (event.keyCode) {
+                    KeyEvent.KEYCODE_DPAD_UP -> isUpPressed = isDown
+                    KeyEvent.KEYCODE_DPAD_DOWN -> isDownPressed = isDown
+                    KeyEvent.KEYCODE_DPAD_LEFT -> isLeftPressed = isDown
+                    KeyEvent.KEYCODE_DPAD_RIGHT -> isRightPressed = isDown
+                }
+
+                if (isDown) {
+                    // Start update loop if needed
+                    cursorHandler.removeCallbacks(cursorUpdateRunnable)
+                    cursorHandler.post(cursorUpdateRunnable)
+                }
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
+                if (!cursorVisible) return super.dispatchKeyEvent(event)
+                if (event.action == KeyEvent.ACTION_DOWN) {
+                    if (event.repeatCount == 0) {
+                        okLongPressPending = true
+                        cursorHandler.postDelayed(okLongPressRunnable, 800)
+                    }
+                } else if (event.action == KeyEvent.ACTION_UP) {
+                    if (okLongPressPending) {
+                        okLongPressPending = false
+                        cursorHandler.removeCallbacks(okLongPressRunnable)
+
+                        // Simulate a real native touch event at cursor position
+                        val time = SystemClock.uptimeMillis()
+                        val motionEventDown = MotionEvent.obtain(
+                            time, time, MotionEvent.ACTION_DOWN, cursorX, cursorY, 0
+                        )
+                        val motionEventUp = MotionEvent.obtain(
+                            time, time + 50, MotionEvent.ACTION_UP, cursorX, cursorY, 0
+                        )
+                        webView.dispatchTouchEvent(motionEventDown)
+                        webView.dispatchTouchEvent(motionEventUp)
+                        motionEventDown.recycle()
+                        motionEventUp.recycle()
+
+                        // Briefly flash cursor red/gray to indicate click
+                        cursorView.invalidate()
+                    }
+                }
+                return true
+            }
+            KeyEvent.KEYCODE_MENU -> {
+                if (event.action == KeyEvent.ACTION_UP) {
+                    startActivity(Intent(this, TweaksActivity::class.java))
+                }
+                return true
+            }
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
+    // ──────── Analytics helper ────────
+    private fun logTweak(name: String, enabled: Boolean) {
+        val prefs = getSharedPreferences("tweaks_prefs", MODE_PRIVATE)
+        if (!prefs.getBoolean("analytics_enabled", true)) return
+        Firebase.analytics.logEvent(name) {
+            param(FirebaseAnalytics.Param.VALUE, if (enabled) 1L else 0L)
+        }
+    }
+
     // ──────── Tweak injection ────────
     private fun injectTweaksIfNeeded() {
         val prefs = getSharedPreferences("tweaks_prefs", MODE_PRIVATE)
         webView.evaluateJavascript(removeTapHighlightJs, null)
-        webView.evaluateJavascript(if (prefs.getBoolean("blur_profanity", false)) blurProfanityJs else removeBlurJs, null)
-        webView.evaluateJavascript(if (prefs.getBoolean("traffic_saver", false)) trafficSaverJs else removeTrafficSaverJs, null)
-        webView.evaluateJavascript(if (prefs.getBoolean("image_download", true)) imageDownloadJs else removeImageDownloadJs, null)
+
+        val blurEnabled = prefs.getBoolean("blur_profanity", false)
+        webView.evaluateJavascript(if (blurEnabled) blurProfanityJs else removeBlurJs, null)
+        logTweak("tweak_blur_profanity", blurEnabled)
+
+        val trafficEnabled = prefs.getBoolean("traffic_saver", false)
+        webView.evaluateJavascript(if (trafficEnabled) trafficSaverJs else removeTrafficSaverJs, null)
+        logTweak("tweak_traffic_saver", trafficEnabled)
+
+        val dlEnabled = prefs.getBoolean("image_download", true)
+        webView.evaluateJavascript(if (dlEnabled) imageDownloadJs else removeImageDownloadJs, null)
+        logTweak("tweak_image_download", dlEnabled)
 
         // Emoji clan filter
         val blockedEmojis = prefs.getString("blocked_emojis", "") ?: ""
         if (blockedEmojis.isNotEmpty()) {
             webView.evaluateJavascript(emojiFilterJs(blockedEmojis), null)
+            logTweak("tweak_emoji_filter", true)
         } else {
             webView.evaluateJavascript(removeEmojiFilterJs, null)
+            logTweak("tweak_emoji_filter", false)
         }
 
         // Translator
-        if (prefs.getBoolean("translator_enabled", false)) {
+        val trEnabled = prefs.getBoolean("translator_enabled", false)
+        if (trEnabled) {
             val skipLangs = prefs.getString("translator_skip_langs", "ru") ?: "ru"
             val targetLang = prefs.getString("translator_target_lang", "ru") ?: "ru"
             val autoTranslate = prefs.getBoolean("translator_auto", false)
@@ -502,12 +726,58 @@ document.head.appendChild(s); })();
         } else {
             webView.evaluateJavascript(removeTranslatorJs, null)
         }
+        logTweak("tweak_translator", trEnabled)
 
-        if (prefs.getBoolean("material_you", false) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val myEnabled = prefs.getBoolean("material_you", false)
+        if (myEnabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             injectMaterialYouColors()
         } else {
             webView.evaluateJavascript("(function(){var el=document.getElementById('itp-my');if(el)el.remove();})()", null)
         }
+        logTweak("tweak_material_you", myEnabled)
+
+        // PC Version: Desktop UA + landscape orientation + layout scaling
+        val pcEnabled = prefs.getBoolean("pc_version", false)
+        if (pcEnabled) {
+            webView.settings.userAgentString =
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            webView.settings.useWideViewPort = true
+            webView.settings.loadWithOverviewMode = true
+            webView.setInitialScale(1)
+            webView.evaluateJavascript(
+                """
+                (function() {
+                    var meta = document.querySelector('meta[name="viewport"]');
+                    if (meta) {
+                        meta.setAttribute('content', 'width=1280');
+                    } else {
+                        meta = document.createElement('meta');
+                        meta.name = 'viewport';
+                        meta.content = 'width=1280';
+                        document.head.appendChild(meta);
+                    }
+                })();
+                """.trimIndent(), null
+            )
+        } else {
+            webView.settings.userAgentString = null
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+            webView.settings.useWideViewPort = false
+            webView.settings.loadWithOverviewMode = false
+            webView.setInitialScale(0)
+            webView.evaluateJavascript(
+                """
+                (function() {
+                    var meta = document.querySelector('meta[name="viewport"]');
+                    if (meta) {
+                        meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0');
+                    }
+                })();
+                """.trimIndent(), null
+            )
+        }
+        logTweak("tweak_pc_version", pcEnabled)
     }
 
     @SuppressLint("DiscouragedApi")
