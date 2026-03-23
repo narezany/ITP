@@ -60,6 +60,11 @@ class TweaksActivity : AppCompatActivity() {
         switchDl.isChecked = prefs.getBoolean("image_download", true)
         switchDl.setOnCheckedChangeListener { _, c -> prefs.edit().putBoolean("image_download", c).apply() }
 
+        // ── Clickable Links ──
+        val switchLinks = findViewById<SwitchCompat>(R.id.switch_clickable_links)
+        switchLinks.isChecked = prefs.getBoolean("clickable_links", true)
+        switchLinks.setOnCheckedChangeListener { _, c -> prefs.edit().putBoolean("clickable_links", c).apply() }
+
         // ── Emoji clan filter ──
         val inputEmojis = findViewById<EditText>(R.id.input_blocked_emojis)
         inputEmojis.setText(prefs.getString("blocked_emojis", ""))

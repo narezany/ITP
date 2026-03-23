@@ -19,6 +19,9 @@
     <string name="tweak_download">Скачка фото</string>
     <string name="tweak_download_desc">Кнопка скачивания в углу фото</string>
 
+    <string name="tweak_clickable_links">Кликабельные ссылки</string>
+    <string name="tweak_clickable_links_desc">Делает ссылки в постах нажимаемыми</string>
+
     <string name="tweak_emoji">Скрыть эмодзи-кланы</string>
     <string name="tweak_emoji_desc">Введите эмодзи аватарки кланов через пробел</string>
 

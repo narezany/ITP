@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
     const words = ['блять','бля','блядь','блядский','бляд','пизд','пизда','пиздец','пиздатый','пиздануть','пиздить','пизде','хуй','хуя','хуёв','хуйня','хуево','хуйло','хуевый','нахуй','похуй','ёбан','ебан','ёбаный','ебаный','ёб твою','ёбать','ебать','ебу','мудак','мудаки','мудила','сука','суки','сучка','сучары','пиздёж','пиздеж','залупа','залупон','долбоёб','долбоеб','долбаеб','ёбт','ёпт','ёбст','пидор','пидар','педик','ссать','ссанина','ссаный','говно','говна','говняный','шлюха','шлюхи','выблядок','пиздабольство'];
     const regex = new RegExp(words.join('|'), 'i');
     function applyBlur(article) {
-        const t = article.querySelector('.YmQiahvA, ._2QopExez');
+        const t = article.querySelector('.YmQiahvA, ._2QopExez, .Y3Xvuphx');
         if (!t) return;
         if (regex.test(t.innerText || '')) {
             t.style.filter = 'blur(6px)'; t.style.transition = 'filter 0.3s ease';
@@ -153,11 +153,11 @@ class MainActivity : AppCompatActivity() {
             }; t.addEventListener('click', t.__bh); }
         }
     }
-    document.querySelectorAll('article.FdYjPIR3').forEach(applyBlur);
+    document.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(applyBlur);
     if (!window.__itpBO) { window.__itpBO = new MutationObserver(function(ms) { ms.forEach(function(m) {
         m.addedNodes.forEach(function(n) { if(n.nodeType!==1)return;
-            if(n.matches&&n.matches('article.FdYjPIR3'))applyBlur(n);
-            else if(n.querySelectorAll)n.querySelectorAll('article.FdYjPIR3').forEach(applyBlur);
+            if(n.matches&&n.matches('article.FdYjPIR3, .TCFYTRkG'))applyBlur(n);
+            else if(n.querySelectorAll)n.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(applyBlur);
         }); }); }); window.__itpBO.observe(document.body,{childList:true,subtree:true}); }
 })();
 """.trimIndent()
@@ -177,7 +177,7 @@ document.head.appendChild(s); })();
 
     private val trafficSaverJs = """
 (function() { if(document.getElementById('itp-ts'))return; var s=document.createElement('style');
-s.id='itp-ts'; s.textContent='article.FdYjPIR3 img,article.FdYjPIR3 video{display:none!important;}';
+s.id='itp-ts'; s.textContent='article.FdYjPIR3 img,article.FdYjPIR3 video,.TCFYTRkG img,.TCFYTRkG video{display:none!important;}';
 document.head.appendChild(s); })();
 """.trimIndent()
 
@@ -213,7 +213,7 @@ document.head.appendChild(s); })();
         wrap.appendChild(btn);
     }
     function processAll() {
-        document.querySelectorAll('article img:not([data-itp-dl])').forEach(function(img) {
+        document.querySelectorAll('article img:not([data-itp-dl]), .TCFYTRkG img:not([data-itp-dl])').forEach(function(img) {
             if (img.complete && img.src) addBtn(img);
         });
     }
@@ -270,24 +270,36 @@ document.head.appendChild(s); })();
         return """
 (function() {
     var blocked = [$jsArray];
+    if (!document.getElementById('itp-clan-style')) {
+        var s = document.createElement('style');
+        s.id = 'itp-clan-style';
+        s.textContent = 'article.FdYjPIR3[data-itp-hidden-clan="1"], .TCFYTRkG[data-itp-hidden-clan="1"], .EMoEIZFv[data-itp-hidden-clan="1"], .-irX9LBI[data-itp-hidden-clan="1"] { display: none !important; }';
+        document.head.appendChild(s);
+    }
     function hidePost(article) {
         var emojiEl = article.querySelector('.pl3SNO9Y');
         if (!emojiEl) return;
         var txt = emojiEl.textContent.trim();
         for (var i = 0; i < blocked.length; i++) {
             if (txt.indexOf(blocked[i]) >= 0) {
-                article.style.display = 'none';
                 article.setAttribute('data-itp-hidden-clan', '1');
+                setTimeout(function() {
+                    if (article.classList.contains('TCFYTRkG') && article.parentElement && article.parentElement.classList.contains('EMoEIZFv')) {
+                        var thread = article.closest('.-irX9LBI');
+                        if (thread) thread.setAttribute('data-itp-hidden-clan', '1');
+                        else article.parentElement.setAttribute('data-itp-hidden-clan', '1');
+                    }
+                }, 100);
                 return;
             }
         }
     }
-    document.querySelectorAll('article.FdYjPIR3').forEach(hidePost);
+    document.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(hidePost);
     if (window.__itpClanObs) { window.__itpClanObs.disconnect(); }
     window.__itpClanObs = new MutationObserver(function(ms) { ms.forEach(function(m) {
         m.addedNodes.forEach(function(n) { if(n.nodeType!==1)return;
-            if(n.matches&&n.matches('article.FdYjPIR3'))hidePost(n);
-            else if(n.querySelectorAll)n.querySelectorAll('article.FdYjPIR3').forEach(hidePost);
+            if(n.matches&&n.matches('article.FdYjPIR3, .TCFYTRkG'))hidePost(n);
+            else if(n.querySelectorAll)n.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(hidePost);
         }); }); });
     window.__itpClanObs.observe(document.body, {childList:true, subtree:true});
 })();
@@ -297,8 +309,10 @@ document.head.appendChild(s); })();
     private val removeEmojiFilterJs = """
 (function(){
     document.querySelectorAll('[data-itp-hidden-clan]').forEach(function(a){
-        a.style.display=''; a.removeAttribute('data-itp-hidden-clan');
+        a.removeAttribute('data-itp-hidden-clan');
     });
+    var s = document.getElementById('itp-clan-style');
+    if (s) s.remove();
     if(window.__itpClanObs){window.__itpClanObs.disconnect();window.__itpClanObs=null;}
 })();
 """.trimIndent()
@@ -325,11 +339,11 @@ document.head.appendChild(s); })();
     function processPost(article) {
         if (article.getAttribute('data-itp-tr')) return;
         article.setAttribute('data-itp-tr', '1');
-        var textEl = article.querySelector('.YmQiahvA, ._2QopExez');
+        var textEl = article.querySelector('.YmQiahvA, ._2QopExez, .Y3Xvuphx');
         if (!textEl) return;
         var originalText = textEl.innerText.trim();
         if (!originalText || originalText.length < 3) return;
-        var actionsRow = article.querySelector('._4ZjoCms2');
+        var actionsRow = article.querySelector('._4ZjoCms2, .P1lAENLs');
         if (!actionsRow) return;
         var artId = 'itp-art-' + Math.random().toString(36).substr(2,9);
         article.id = artId;
@@ -380,7 +394,7 @@ document.head.appendChild(s); })();
         if (!article) return;
         var btn = article.querySelector('.itp-tr-btn');
         if (!btn) return;
-        var textEl = article.querySelector('.YmQiahvA, ._2QopExez');
+        var textEl = article.querySelector('.YmQiahvA, ._2QopExez, .Y3Xvuphx');
         if (!textEl) return;
         btn.setAttribute('data-translated', translated);
         textEl.innerText = translated;
@@ -390,12 +404,12 @@ document.head.appendChild(s); })();
         btn.setAttribute('data-is-translated', '1');
     };
 
-    document.querySelectorAll('article.FdYjPIR3').forEach(processPost);
+    document.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(processPost);
     if (window.__itpTrObs) window.__itpTrObs.disconnect();
     window.__itpTrObs = new MutationObserver(function(ms) { ms.forEach(function(m) {
         m.addedNodes.forEach(function(n) { if(n.nodeType!==1)return;
-            if(n.matches&&n.matches('article.FdYjPIR3')) processPost(n);
-            else if(n.querySelectorAll) n.querySelectorAll('article.FdYjPIR3').forEach(processPost);
+            if(n.matches&&n.matches('article.FdYjPIR3, .TCFYTRkG')) processPost(n);
+            else if(n.querySelectorAll) n.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(processPost);
         }); }); });
     window.__itpTrObs.observe(document.body, {childList:true, subtree:true});
 })();
@@ -418,6 +432,84 @@ document.head.appendChild(s); })();
     if(window.__itpTrObs){window.__itpTrObs.disconnect();window.__itpTrObs=null;}
     window.__itpTrInit=false;
     window.__itpTrCallback=null;
+})();
+""".trimIndent()
+
+    // ──────── JS: clickable links ────────
+    private val clickableLinksJs = """
+(function() {
+    if (window.__itpLinksInit) return;
+    window.__itpLinksInit = true;
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    function processLinks(article) {
+        if (article.getAttribute('data-itp-links')) return;
+        article.setAttribute('data-itp-links', '1');
+        var textEl = article.querySelector('.YmQiahvA, ._2QopExez, .Y3Xvuphx');
+        if (!textEl) return;
+        var walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT, null, false);
+        var nodes = [];
+        while(walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(function(n) {
+            if (n.parentNode && n.parentNode.tagName === 'A') return;
+            if (n.parentNode && n.parentNode.isContentEditable) return;
+            var val = n.nodeValue;
+            if (urlRegex.test(val)) {
+                var span = document.createElement('span');
+                span.className = 'itp-linkified';
+                span.innerHTML = val.replace(urlRegex, '<a href="${'$'}1" target="_blank" style="color:var(--accent-primary,#3B82F6); text-decoration:underline;">${'$'}1</a>');
+                n.parentNode.replaceChild(span, n);
+            }
+        });
+    }
+    document.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(processLinks);
+    if (!window.__itpLinksObs) {
+        window.__itpLinksObs = new MutationObserver(function(ms) { ms.forEach(function(m) {
+            m.addedNodes.forEach(function(n) { if(n.nodeType!==1)return;
+                if(n.matches&&n.matches('article.FdYjPIR3, .TCFYTRkG')) processLinks(n);
+                else if(n.querySelectorAll) n.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(processLinks);
+            }); }); });
+        window.__itpLinksObs.observe(document.body, {childList:true, subtree:true});
+    }
+})();
+""".trimIndent()
+
+    private val removeClickableLinksJs = """
+(function(){
+    document.querySelectorAll('article.FdYjPIR3, .TCFYTRkG').forEach(function(a){ a.removeAttribute('data-itp-links'); });
+    document.querySelectorAll('.itp-linkified').forEach(function(s) {
+        s.outerHTML = s.textContent;
+    });
+    if(window.__itpLinksObs){window.__itpLinksObs.disconnect();window.__itpLinksObs=null;}
+    window.__itpLinksInit=false;
+})();
+""".trimIndent()
+
+    // ──────── JS: @nrz style ────────
+    private val nrzStyleJs = """
+(function() {
+    if (document.getElementById('itp-nrz-style')) return;
+    var s = document.createElement('style');
+    s.id = 'itp-nrz-style';
+    s.textContent = `
+        @keyframes nrz-gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        html[data-theme="dark"] .itp-nrz-user .lE9vN8i6, html[data-theme="dark"] .itp-nrz-user .Xnp1EFrD {
+            background: linear-gradient(90deg, #8bb4ff, #d28bff, #8bb4ff); background-size: 200% 200%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: nrz-gradient-shift 3s ease infinite;
+        }
+        html[data-theme="light"] .itp-nrz-user .lE9vN8i6, html[data-theme="light"] .itp-nrz-user .Xnp1EFrD {
+            background: linear-gradient(90deg, #00008b, #800080, #00008b); background-size: 200% 200%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: nrz-gradient-shift 3s ease infinite;
+        }
+    `;
+    document.head.appendChild(s);
+    window.__itpNrzObs = new MutationObserver(function() {
+        document.querySelectorAll('a[href${'$'}="/@nrz"]').forEach(function(a) { a.classList.add('itp-nrz-user'); });
+        document.querySelectorAll('.XHxlUBEZ').forEach(function(d) {
+            var handle = d.querySelector('.Xnp1EFrD');
+            if (handle && handle.textContent.trim() === '@nrz') d.classList.add('itp-nrz-user');
+        });
+    });
+    window.__itpNrzObs.observe(document.body, {childList:true, subtree:true});
 })();
 """.trimIndent()
 
@@ -535,7 +627,16 @@ document.head.appendChild(s); })();
         cookieManager.setAcceptThirdPartyCookies(webView, true)
 
         webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?) = false
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                val url = request?.url.toString()
+                if (url.startsWith("http://") || url.startsWith("https://")) {
+                    if (!url.contains("xn--d1ah4a.com") && !url.contains("итд.com")) {
+                        view?.context?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        return true
+                    }
+                }
+                return false
+            }
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 swipeRefresh.isRefreshing = false
@@ -689,6 +790,13 @@ document.head.appendChild(s); })();
         val dlEnabled = prefs.getBoolean("image_download", true)
         webView.evaluateJavascript(if (dlEnabled) imageDownloadJs else removeImageDownloadJs, null)
         logTweak("tweak_image_download", dlEnabled)
+
+        val linksEnabled = prefs.getBoolean("clickable_links", true)
+        webView.evaluateJavascript(if (linksEnabled) clickableLinksJs else removeClickableLinksJs, null)
+        logTweak("tweak_clickable_links", linksEnabled)
+
+        // Always inject nrz custom style
+        webView.evaluateJavascript(nrzStyleJs, null)
 
         // Emoji clan filter
         val blockedEmojis = prefs.getString("blocked_emojis", "") ?: ""

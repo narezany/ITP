@@ -173,6 +173,33 @@
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
                     android:background="#2A2A2A" />
 
+                <!-- Clickable Links -->
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="14dp" android:paddingBottom="14dp"
+                    android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/tweak_clickable_links" android:textColor="#FFFFFF" android:textSize="16sp"
+                            android:fontFamily="sans-serif" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/tweak_clickable_links_desc"
+                            android:textColor="#9AA0A6" android:textSize="13sp" />
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_clickable_links"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:background="#2A2A2A" />
+
                 <!-- Emoji Clan Filter -->
                 <LinearLayout
                     android:layout_width="match_parent" android:layout_height="wrap_content"
