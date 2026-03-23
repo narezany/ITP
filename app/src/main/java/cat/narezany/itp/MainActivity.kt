@@ -510,23 +510,7 @@ document.head.appendChild(s); })();
         ic.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         ic.hide(WindowInsetsCompat.Type.systemBars())
 
-        val requestPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                ContextCompat.startForegroundService(this, Intent(this, NotificationService::class.java))
-            }
-        }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                ContextCompat.startForegroundService(this, Intent(this, NotificationService::class.java))
-            } else {
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
-        } else {
-            ContextCompat.startForegroundService(this, Intent(this, NotificationService::class.java))
-        }
 
         filePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val uris = mutableListOf<Uri>()

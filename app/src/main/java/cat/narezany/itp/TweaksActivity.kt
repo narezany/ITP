@@ -110,12 +110,7 @@ class TweaksActivity : AppCompatActivity() {
         inputTargetLang.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val text = v.text.toString().trim()
-                if (text == "testnof") {
-                    startService(Intent(this, NotificationService::class.java).apply { putExtra("test_notif", true) })
-                    v.setText(prefs.getString("translator_target_lang", "ru"))
-                } else {
-                    prefs.edit().putString("translator_target_lang", text).apply()
-                }
+                prefs.edit().putString("translator_target_lang", text).apply()
                 v.clearFocus(); true
             } else false
         }
@@ -153,8 +148,8 @@ class TweaksActivity : AppCompatActivity() {
 
         // ── Language ──
         val langSpinner = findViewById<Spinner>(R.id.spinner_language)
-        val languages = arrayOf("System (Системный)", "English", "Українська", "Русский", "中文", "Español")
-        val langCodes = arrayOf("", "en", "uk", "ru", "zh", "es")
+        val languages = arrayOf("System (Системный)", "English", "Русский", "中文", "Español")
+        val langCodes = arrayOf("", "en", "ru", "zh", "es")
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -163,7 +158,6 @@ class TweaksActivity : AppCompatActivity() {
         val currentLocales = AppCompatDelegate.getApplicationLocales().toLanguageTags()
         val currentLang = when {
             currentLocales.startsWith("en") -> "en"
-            currentLocales.startsWith("uk") -> "uk"
             currentLocales.startsWith("ru") -> "ru"
             else -> ""
         }

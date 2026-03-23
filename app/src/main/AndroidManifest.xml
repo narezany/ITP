@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <!-- TV: no touchscreen required -->
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
@@ -52,10 +49,7 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
-        <service
-            android:name=".NotificationService"
-            android:foregroundServiceType="dataSync"
-            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -33,7 +33,7 @@
     <string name="tweak_tr">Переводчик</string>
     <string name="tweak_tr_desc">Перевод постов и комментариев</string>
     <string name="tweak_tr_skip">Не переводить с языков</string>
-    <string name="tweak_tr_skip_desc">Коды через запятую (ru, uk, en…)</string>
+    <string name="tweak_tr_skip_desc">Коды через запятую (ru, en…)</string>
     <string name="tweak_tr_target">Переводить на язык</string>
     <string name="tweak_tr_auto">Автоматически</string>
     <string name="tweak_tr_auto_desc">Переводить сразу без нажатия</string>

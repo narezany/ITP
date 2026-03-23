@@ -20,7 +20,7 @@ Android application for [itd](https://итд.com/) with advanced features. Not a
 
 Built-in post translation via Google Translate:
 
-- **Skip languages** — comma-separated language codes (e.g. `ru, uk`)
+- **Skip languages** — comma-separated language codes (e.g. `ru`)
 - **Target language** — target language (e.g. `en`)
 - **Auto-mode** — all posts are translated immediately
 - **Manual mode** — translation button near ❤ 💬 🔄. Tap → translates. Tap again → original |
@@ -29,7 +29,7 @@ Built-in post translation via Google Translate:
 
 | Feature | Description |
 |---------|----------|
-| **App language** | Interface language selection (System, English, Ukrainian, Russian, Chinese, Spanish) |
+| **App language** | Interface language selection (System, English, Russian, Chinese, Spanish) |
 | **Material You** | Adapts site colors to Android 12+ Material You theme. Light/Dark mode |
 | **PC version** | PC-like site layout, horizontal screen support |
 
@@ -38,7 +38,6 @@ Built-in post translation via Google Translate:
 | Feature | Description |
 |---------|----------|
 | **PIN code** | Requires a 4-digit PIN on cold start |
-| **Notifications** | Background checking for new site events |
 | **Analytics** | Disableable anonymous basic statistics collection |
 
 ### Misc
@@ -71,7 +70,6 @@ app/src/main/java/cat/narezany/itp/
 ├── MainActivity.kt       # WebView + all JS injections
 ├── TweaksActivity.kt     # Tweaks settings
 ├── PinActivity.kt        # PIN entry/setup screen
-├── NotificationService.kt# Background notification worker
 ```
 
 ## 📝 License
